@@ -2,3 +2,5 @@
 .DS_Store?
 
 Messenger/Pods/
+Instagram/Pods/
+Instagram/Instagram/GoogleService-Info.plist
