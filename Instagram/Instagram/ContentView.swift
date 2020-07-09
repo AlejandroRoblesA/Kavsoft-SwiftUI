@@ -20,7 +20,7 @@ struct ContentView: View {
                     .navigationBarItems(
                         leading:
                             Button(action:{
-                        
+                                
                             }){
                                 Image(systemName: SFSimbolsImages().camera)
                                     .resizable()
@@ -29,7 +29,6 @@ struct ContentView: View {
                             }
                             .foregroundColor(Color("darkAndWhite"))
                         , trailing:
-                        
                             HStack{
                                 Button(action:{
                                     
@@ -52,9 +51,9 @@ struct ContentView: View {
                                 .foregroundColor(Color("darkAndWhite"))
                             }
                     )
-            }.tabItem{
+            }
+            .tabItem{
                 Image(systemName: SFSimbolsImages().home)
-                    
             }
             
             Text("Find")
@@ -87,6 +86,10 @@ struct ContentView: View {
 struct Home: View{
     
     @ObservedObject var observer = Observer()
+    @ObservedObject var postsObsever = PostsObserver()
+    @State var show = false
+    @State var user = ""
+    @State var url  = ""
     
     var body: some View{
         
@@ -97,34 +100,56 @@ struct Home: View{
                 ScrollView(.horizontal, showsIndicators: false){
                     HStack{
                         ForEach(observer.status){ snap in
-                            StatusCard(imageName: snap.image)
+                            StatusCard(imageName: snap.image, user: snap.name, show: self.$show, user1: self.$user, url: self.$url)
                                 .padding(.horizontal, 10)
                         }
                     }
+                    .animation(.spring())
                 }
-                ForEach(0..<8){ _ in
-                    
-                    PostCard(user: "", image: "", id: "")
-                    
+                
+                if postsObsever.posts.isEmpty{
+                    Text("No Posts")
+                        .fontWeight(.heavy)
+                }
+                else{
+                    ForEach(postsObsever.posts){ snap in
+                        
+                        PostCard(user: snap.name, image: snap.image, id: snap.id,  likes: snap.likes, comments: snap.comments)
+                    }
                 }
             }
-            
         }
-        .animation(.spring())
+        .sheet(isPresented: $show){
+            
+            StatusView(url: self.url, name: self.user)
+        }
     }
 }
-
 
 struct StatusCard: View {
     
     var imageName = ""
+    var user = ""
+    
+    @Binding var show: Bool
+    @Binding var user1: String
+    @Binding var url: String
     
     var body: some View{
-                
-        AnimatedImage(url: URL(string: imageName))
-            .resizable()
-            .frame(width: 60, height: 60)
-            .clipShape(Circle())
+         
+        VStack{
+            AnimatedImage(url: URL(string: imageName))
+                .resizable()
+                .frame(width: 60, height: 60)
+                .clipShape(Circle())
+                .onTapGesture {
+                    self.user1 = self.user
+                    self.url = self.imageName
+                    self.show.toggle()
+                }
+            
+            Text(user).fontWeight(.light)
+        }
     }
 }
 
@@ -133,15 +158,17 @@ struct PostCard: View{
     var user = ""
     var image = ""
     var id = ""
+    var likes = ""
+    var comments = ""
     
     var body: some View{
         VStack(alignment: .leading){
             HStack{
-                Image("maiden")
+                AnimatedImage(url: URL(string: image))
                     .resizable()
                     .frame(width: 30, height: 30)
                     .clipShape(Circle())
-                Text("User")
+                Text(user)
                 Spacer()
                 Button(action:{
                     
@@ -153,7 +180,7 @@ struct PostCard: View{
                 .foregroundColor(Color("darkAndWhite"))
             }
             
-            Image("maiden")
+            AnimatedImage(url: URL(string: image))
                 .resizable()
                 .frame(height: 350)
             
@@ -189,13 +216,12 @@ struct PostCard: View{
             }
             .padding(.top, 8)
             
-            Text("2 Likes")
+            Text("\(likes) Likes")
                 .padding(.top, 8)
-            Text("View all 3 Comments")
+            Text("View \(comments) Comments")
         }
-    .padding(8)
+        .padding(8)
     }
-    
 }
 
 class Observer: ObservableObject{
@@ -219,16 +245,101 @@ class Observer: ObservableObject{
                     
                     self.status.append(Datatype(id: id, name: name, image: image))
                 }
+                
+                if (i.type == .removed){
+                    let id = i.document.documentID
+                    
+                    for j in 0..<self.status.count{
+                        if self.status[j].id == id{
+                            self.status.remove(at: j)
+                            return
+                        }
+                    }
+                }
             }
         }
     }
-    
 }
 
 struct Datatype: Identifiable{
     var id: String
     var name: String
     var image: String
+}
+
+class PostsObserver: ObservableObject{
+    
+    @Published var posts = [PostsDatatype]()
+    
+    init (){
+        let db = Firestore.firestore()
+        db.collection("posts").addSnapshotListener{ snap, error in
+            
+            if (error != nil){
+                print(error!.localizedDescription)
+                return
+            }
+            
+            for i in snap!.documentChanges{
+                if (i.type == .added){
+                    let id = i.document.documentID
+                    let name = i.document.get("name") as! String
+                    let image = i.document.get("image") as! String
+                    let comment = i.document.get("comments") as! String
+                    let likes = i.document.get("likes") as! String
+                    
+                    self.posts.append(PostsDatatype(id: id, name: name, image: image, comments: comment, likes: likes))
+                }
+                
+                if (i.type == .removed){
+                    let id = i.document.documentID
+                    
+                    for j in 0..<self.posts.count{
+                        if self.posts[j].id == id{
+                            self.posts.remove(at: j)
+                            return
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+struct PostsDatatype: Identifiable{
+    var id:       String
+    var name:     String
+    var image:    String
+    var comments: String
+    var likes:    String
+}
+
+struct StatusView: View{
+    
+    var url = ""
+    var name = ""
+    
+    var body: some View{
+        
+        ZStack{
+            AnimatedImage(url: URL(string: url))
+            .resizable()
+            .edgesIgnoringSafeArea(.all)
+            
+            VStack{
+                HStack{
+                    Text(name)
+                    .foregroundColor(Color("darkAndWhite"))
+                        .font(.headline)
+                        .fontWeight(.heavy)
+                        .padding()
+                        .background(Color.white)
+                    Spacer()
+                }
+                Spacer()
+            }
+        }
+    }
 }
 
 struct ContentView_Previews: PreviewProvider {
