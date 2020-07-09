@@ -8,6 +8,7 @@
 
 import SwiftUI
 import Firebase
+import SDWebImageSwiftUI
 
 struct ContentView: View {
     var body: some View {
@@ -84,6 +85,9 @@ struct ContentView: View {
 }
 
 struct Home: View{
+    
+    @ObservedObject var observer = Observer()
+    
     var body: some View{
         
         ScrollView(.vertical, showsIndicators: false){
@@ -92,8 +96,8 @@ struct Home: View{
                 
                 ScrollView(.horizontal, showsIndicators: false){
                     HStack{
-                        ForEach(0..<5){ _ in
-                            StatusCard(imageName: "maiden")
+                        ForEach(observer.status){ snap in
+                            StatusCard(imageName: snap.image)
                                 .padding(.horizontal, 10)
                         }
                     }
@@ -106,6 +110,7 @@ struct Home: View{
             }
             
         }
+        .animation(.spring())
     }
 }
 
@@ -115,8 +120,8 @@ struct StatusCard: View {
     var imageName = ""
     
     var body: some View{
-    
-        Image(imageName)
+                
+        AnimatedImage(url: URL(string: imageName))
             .resizable()
             .frame(width: 60, height: 60)
             .clipShape(Circle())
@@ -191,6 +196,39 @@ struct PostCard: View{
     .padding(8)
     }
     
+}
+
+class Observer: ObservableObject{
+    
+    @Published var status = [Datatype]()
+    
+    init (){
+        let db = Firestore.firestore()
+        db.collection("status").addSnapshotListener{ snap, error in
+            
+            if (error != nil){
+                print(error!.localizedDescription)
+                return
+            }
+            
+            for i in snap!.documentChanges{
+                if (i.type == .added){
+                    let id = i.document.documentID
+                    let name = i.document.get("name") as! String
+                    let image = i.document.get("image") as! String
+                    
+                    self.status.append(Datatype(id: id, name: name, image: image))
+                }
+            }
+        }
+    }
+    
+}
+
+struct Datatype: Identifiable{
+    var id: String
+    var name: String
+    var image: String
 }
 
 struct ContentView_Previews: PreviewProvider {

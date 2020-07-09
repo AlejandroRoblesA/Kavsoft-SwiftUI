@@ -3,11 +3,12 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		81F055B7D47832D2BC8071BD /* Pods_Instagram.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D683712A3E480901B8D4381 /* Pods_Instagram.framework */; };
+		A8971B9324B782BA00F9F463 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = A8971B9224B782BA00F9F463 /* SDWebImageSwiftUI */; };
 		A8CDEB4B24B65EE8003E4596 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CDEB4A24B65EE8003E4596 /* AppDelegate.swift */; };
 		A8CDEB4D24B65EE8003E4596 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CDEB4C24B65EE8003E4596 /* SceneDelegate.swift */; };
 		A8CDEB4F24B65EE8003E4596 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CDEB4E24B65EE8003E4596 /* ContentView.swift */; };
@@ -39,6 +40,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A8971B9324B782BA00F9F463 /* SDWebImageSwiftUI in Frameworks */,
 				81F055B7D47832D2BC8071BD /* Pods_Instagram.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -123,6 +125,9 @@
 			dependencies = (
 			);
 			name = Instagram;
+			packageProductDependencies = (
+				A8971B9224B782BA00F9F463 /* SDWebImageSwiftUI */,
+			);
 			productName = Instagram;
 			productReference = A8CDEB4724B65EE8003E4596 /* Instagram.app */;
 			productType = "com.apple.product-type.application";
@@ -151,6 +156,9 @@
 				Base,
 			);
 			mainGroup = A8CDEB3E24B65EE8003E4596;
+			packageReferences = (
+				A8971B9124B782BA00F9F463 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
+			);
 			productRefGroup = A8CDEB4824B65EE8003E4596 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -418,6 +426,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		A8971B9124B782BA00F9F463 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImageSwiftUI.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.5.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		A8971B9224B782BA00F9F463 /* SDWebImageSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A8971B9124B782BA00F9F463 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
+			productName = SDWebImageSwiftUI;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = A8CDEB3F24B65EE8003E4596 /* Project object */;
 }
