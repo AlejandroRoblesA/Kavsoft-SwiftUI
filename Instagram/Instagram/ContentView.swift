@@ -195,7 +195,15 @@ struct PostCard: View{
                 .foregroundColor(Color("darkAndWhite"))
                 
                 Button(action: {
-                    
+                    let db = Firestore.firestore()
+                    let like = Int.init(self.likes)!
+                    db.collection("posts").document(self.id).updateData(["likes" : "\(like + 1)"]){ error in
+                        if (error != nil){
+                            print(error!)
+                            return
+                        }
+                        print("Updated")
+                    }
                 }){
                     Image(systemName: SFSimbolsImages().heart)
                         .resizable()
@@ -294,9 +302,21 @@ class PostsObserver: ObservableObject{
                 if (i.type == .removed){
                     let id = i.document.documentID
                     
-                    for j in 0..<self.posts.count{
-                        if self.posts[j].id == id{
+                    for j in 0..<self.posts.count {
+                        if self.posts[j].id == id {
                             self.posts.remove(at: j)
+                            return
+                        }
+                    }
+                }
+                
+                if i.type == .modified{
+                    let id = i.document.documentID
+                    let likes = i.document.get("likes") as! String
+                    
+                    for j in 0..<self.posts.count {
+                        if self.posts[j].id == id {
+                            self.posts[j].likes = likes
                             return
                         }
                     }
