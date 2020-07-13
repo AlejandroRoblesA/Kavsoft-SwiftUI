@@ -7,15 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1F7CBFB0D9B092F8C4C2CE90 /* Pods_Location_Sharing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE0CA1DB3423C7528F3D1952 /* Pods_Location_Sharing.framework */; };
 		A8CA64AD24B7FE4400BC165F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CA64AC24B7FE4400BC165F /* AppDelegate.swift */; };
 		A8CA64AF24B7FE4400BC165F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CA64AE24B7FE4400BC165F /* SceneDelegate.swift */; };
 		A8CA64B124B7FE4400BC165F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CA64B024B7FE4400BC165F /* ContentView.swift */; };
 		A8CA64B324B7FE4500BC165F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A8CA64B224B7FE4500BC165F /* Assets.xcassets */; };
 		A8CA64B624B7FE4500BC165F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A8CA64B524B7FE4500BC165F /* Preview Assets.xcassets */; };
 		A8CA64B924B7FE4500BC165F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A8CA64B724B7FE4500BC165F /* LaunchScreen.storyboard */; };
+		A8CA64C124B7FF3E00BC165F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A8CA64C024B7FF3E00BC165F /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		72179C21BF1DE24D10D2D61F /* Pods-Location Sharing.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Location Sharing.debug.xcconfig"; path = "Target Support Files/Pods-Location Sharing/Pods-Location Sharing.debug.xcconfig"; sourceTree = "<group>"; };
 		A8CA64A924B7FE4400BC165F /* Location Sharing.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Location Sharing.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A8CA64AC24B7FE4400BC165F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A8CA64AE24B7FE4400BC165F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -24,6 +27,9 @@
 		A8CA64B524B7FE4500BC165F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		A8CA64B824B7FE4500BC165F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A8CA64BA24B7FE4500BC165F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A8CA64C024B7FF3E00BC165F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		D313C088608A563009EFF353 /* Pods-Location Sharing.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Location Sharing.release.xcconfig"; path = "Target Support Files/Pods-Location Sharing/Pods-Location Sharing.release.xcconfig"; sourceTree = "<group>"; };
+		FE0CA1DB3423C7528F3D1952 /* Pods_Location_Sharing.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Location_Sharing.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,17 +37,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1F7CBFB0D9B092F8C4C2CE90 /* Pods_Location_Sharing.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6A51C806FA9562276C2E9FFB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FE0CA1DB3423C7528F3D1952 /* Pods_Location_Sharing.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		A8CA64A024B7FE4400BC165F = {
 			isa = PBXGroup;
 			children = (
 				A8CA64AB24B7FE4400BC165F /* Location Sharing */,
 				A8CA64AA24B7FE4400BC165F /* Products */,
+				D434D07378A997BF5074ED76 /* Pods */,
+				6A51C806FA9562276C2E9FFB /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -62,6 +79,7 @@
 				A8CA64B224B7FE4500BC165F /* Assets.xcassets */,
 				A8CA64B724B7FE4500BC165F /* LaunchScreen.storyboard */,
 				A8CA64BA24B7FE4500BC165F /* Info.plist */,
+				A8CA64C024B7FF3E00BC165F /* GoogleService-Info.plist */,
 				A8CA64B424B7FE4500BC165F /* Preview Content */,
 			);
 			path = "Location Sharing";
@@ -75,6 +93,16 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		D434D07378A997BF5074ED76 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				72179C21BF1DE24D10D2D61F /* Pods-Location Sharing.debug.xcconfig */,
+				D313C088608A563009EFF353 /* Pods-Location Sharing.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -82,9 +110,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A8CA64BD24B7FE4500BC165F /* Build configuration list for PBXNativeTarget "Location Sharing" */;
 			buildPhases = (
+				66D40DAEB14C5CCB4420AE1A /* [CP] Check Pods Manifest.lock */,
 				A8CA64A524B7FE4400BC165F /* Sources */,
 				A8CA64A624B7FE4400BC165F /* Frameworks */,
 				A8CA64A724B7FE4400BC165F /* Resources */,
+				CE280E40A8070818FEE422CC /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -134,12 +164,55 @@
 			buildActionMask = 2147483647;
 			files = (
 				A8CA64B924B7FE4500BC165F /* LaunchScreen.storyboard in Resources */,
+				A8CA64C124B7FF3E00BC165F /* GoogleService-Info.plist in Resources */,
 				A8CA64B624B7FE4500BC165F /* Preview Assets.xcassets in Resources */,
 				A8CA64B324B7FE4500BC165F /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		66D40DAEB14C5CCB4420AE1A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Location Sharing-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CE280E40A8070818FEE422CC /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Location Sharing/Pods-Location Sharing-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Location Sharing/Pods-Location Sharing-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Location Sharing/Pods-Location Sharing-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		A8CA64A524B7FE4400BC165F /* Sources */ = {
@@ -282,6 +355,7 @@
 		};
 		A8CA64BE24B7FE4500BC165F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 72179C21BF1DE24D10D2D61F /* Pods-Location Sharing.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -301,6 +375,7 @@
 		};
 		A8CA64BF24B7FE4500BC165F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D313C088608A563009EFF353 /* Pods-Location Sharing.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
