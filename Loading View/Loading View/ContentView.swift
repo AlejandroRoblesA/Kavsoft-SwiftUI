@@ -18,24 +18,21 @@ struct ContentView: View {
             NavigationView{
                 List(0..<10) {_ in
                     Text("Alejandro")
-                        
                 }
-            .navigationBarTitle("Home")
-            .navigationBarItems(trailing:
-                Button(action: {
-                    self.show.toggle()
-                }){
-                    Text("Show")
-                }
-            )
+                .navigationBarTitle("Home")
+                .navigationBarItems(trailing:
+                    Button(action: {
+                        self.show.toggle()
+                    }){
+                        Text("Show")
+                    }
+                )
             }
             .blur(radius: self.show ? 15 : 0)
             if show {
                 Loading()
             }
         }
-        
-        
     }
 }
 
@@ -58,7 +55,7 @@ struct Loading: View{
                     .padding(.top, 8)
             }
         }
-        .frame(width: 100, height: 100)
+        .frame(width: 120, height: 120)
         .cornerRadius(8)
     }
 }
