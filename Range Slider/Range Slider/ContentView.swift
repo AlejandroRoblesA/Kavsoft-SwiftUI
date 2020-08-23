@@ -37,7 +37,6 @@ struct Home: View{
                 .fontWeight(.bold)
                 .padding(.top)
                 
-            
             ZStack(alignment: .leading){
                 Rectangle()
                     .fill(Color.black.opacity(0.20))
