@@ -36,9 +36,6 @@ struct ContentView: View {
                     .padding(.top)
             }
             
-            
-            
-            
             VStack{
                 Spacer()
                 RadioButtons(selected: $selected, show: $show)
